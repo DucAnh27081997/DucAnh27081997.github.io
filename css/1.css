@@ -1,0 +1,27 @@
+body {
+    background-color: #d4d4d4;
+}
+.container {
+    text-align: center;
+}
+.hieuung {
+    width: 20%;
+    margin-top: 50px;
+}
+.khoi h3 {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px;
+    margin: 0px;
+    border: 1px solid gray;
+}
+h3.xanh{
+	background-color: #b12c1e;
+}
+.khoi h3.xanh:hover{
+	background-color: #b12c1e;
+}
+.nd {
+    padding: 10px;
+    border: 1px solid gray;
+}
