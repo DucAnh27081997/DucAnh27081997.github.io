@@ -1,0 +1,22 @@
+/* Developed by Juno_okyo */
+body {
+    background-image: url('img/root.png') !important;
+    padding-top: 20px;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+#txt span {
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 45px;
+    color: #b40c00;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px #b40c00;
+    user-select: none
+}
+
+#btn-yes {
+    z-index: 1
+}
+
+#btn-no {
+    z-index: -1
+}
