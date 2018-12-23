@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Thuat toan RSA</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<link rel="stylesheet" href="content/toastr.min.css">
+	
+</head>
+<body class="container-fluid" ng-app="myApp" ng-controller="myController">
+	<h1>Thuat toan RSA</h1>
+	<div class="col-md-4">
+		<div class="">
+			<div class="col-xs-4">
+				<label for="">n=q.q:</label>
+				<input type="text" id="n" class="form-control" ng-model="n">
+			</div>
+			<div class="col-xs-4">
+				<label for="">q la SNT</label>
+				<input type="text" id="n" class="form-control" ng-model="p">
+			</div>
+			<div class="col-xs-4">
+				<label for="">p la SNT (p!=q)</label>
+				<input type="text" id="n" class="form-control" ng-model="q">
+			</div>
+		</div>
+		
+		<label for="">F(n)=(q-1)(p-1):</label>
+		<input type="text" id="n" class="form-control" ng-model="Fn">
+		<label for="">public key (e) :</label>
+		<input type="text" id="n" class="form-control" ng-model="e">
+		<label for="">private key: (d=e^-1 * f(n))</label>
+		<input type="text" id="n" class="form-control" ng-model="d">
+		<label for="">Bản rõ (M):</label>
+		<input type="text" id="M" class="form-control" ng-model="M">
+		<label for="">Bản mã:(C)</label>
+		<input type="text" id="C" class="form-control" ng-model="C">
+		<div class="form-group text-center" style="padding: 10px">
+			<button class="btn btn-info" ng-click="kiemtraSNT();">check q,q</button>
+			<button class="btn btn-success">encryption</button>
+			<button class="btn btn-danger">decryption</button>
+		</div>
+
+		
+	</div>
+	
+	<div class="col-md-4">
+		<b>eculit mở rộng</b>
+		<div class="nghichdao">
+			<div class="col-md-4">
+				
+			<input type="text" class="form-control" ng-model="m" placeholder="m">
+			</div>
+			<div class="col-md-4">
+				
+			<input type="text" class="form-control" ng-model="a" placeholder="a">
+			</div>
+			<div class="col-md-4">
+				<input type="button" name="Check"class="btn btn-info" ng-click="Eculit_Extennd_Algonglin(m,a);" value="check">	
+			</div>
+			
+		</div>
+		<!-- <input type="button" id="" ng-click="enter()" value="Enter" class="btn btn-success"> -->
+		<table class="table table-hover">
+			<thead >
+				<tr>
+					<th>Bước</th>
+					<th>M</th>
+					<th>a</th>
+					<th>q</th>
+					<th>r</th>
+					<th>y0</th>
+					<th>y1</th>
+					<th>y</th>
+				</tr>
+			</thead>
+			<tbody id="eculit">
+					
+			</tbody>
+		</table>
+	</div>
+	.
+	<div class="col-md-4">
+		<b>Bình phương và nhân D= X^n mod m </b>
+		<div class="col-md-12">
+			<div class="col-md-3"><input class="form-control" type="number" name="X" placeholder="X" ng-model="a"></div>
+			<div class="col-md-3"><input  class="form-control" type="number" name="n" placeholder="n" ng-model="b"></div>
+			<div class="col-md-3"><input  class="form-control" type="number" name="m" placeholder="m" ng-model="c"></div>
+			<div class="col-md-3"><input type="button" class="btn btn-success" value="TEST" name="TEST" ng-click="square_and_multiplication(a,b,c)"></div>
+
+		</div>
+		<div class="col-md-12">
+			<div id="phan_tich_so">
+				
+			</div>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>bit</th>
+					<th>M^2 mod M</th>
+					<th>X.M mod N</th>
+				</tr>
+			</thead>
+			<tbody id="square_and_multiplication">
+				
+			</tbody>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller("myController", function($scope) {
+		$scope.M = 0;
+		$scope.C = 0;
+		$scope.d = 0;
+		$scope.e = 0;
+		$scope.p = 0;
+		$scope.q = 0;
+		$scope.n = 0; 
+		$scope.Fn =0;
+		// kiem tra so nguyen to
+		$scope.check = function(x){
+			if(x<2){ return false;}
+			else(x>=2)
+			{
+				if(x==2 || x==5 || x==3) return true;
+				for(var i=5;x<x/2;i+=2){
+					if(x%i==0) return false;
+				}
+			}
+			return true;
+		}
+		$scope.kiemtraSNT = function(){
+			if(this.check($scope.p)==true)
+			{
+				alert("q là SNT");
+				//toastr/toastr.min.css
+			}
+			else{
+				alert("q là ko SNT");
+			}
+		}
+		
+		// tim nghich deo cua e
+		$scope.Eculit_Extennd_Algonglin= function(m,a){
+			var i = 0;
+			$("#eculit").empty();
+			var M,A,q,r,y0=0,y1=1,y; 
+			M=m=parseInt(m);A=a=parseInt(a);
+			if(a>M){
+				alert("a phai nho hon m");
+				return;
+			}
+			while(A>0)
+			{
+				r=M%A;
+				if(r==0) break;
+				q=parseInt(M/A);
+				
+				y=y0-y1*q;
+				$("#eculit").append('<tr><td><b>'+(i++)+'</b></td><td>'+M+'</td><td>'+A+'</td><td>'+r+'</td><td>'+q+'</td>'
+					+'<td>'+y0+'</td><td>'+y1+'</td><td>'+y+'</td></tr>');
+				y0=y1;
+				y1=y;
+				M=A;
+				A=r;
+				
+			}
+			if(y<0){
+				console.log(y+m);
+				return y+m;
+			}
+			else 
+				{console.log(y);return y;}
+		}
+
+	
+		
+		$scope.Array2 = [];
+		$scope.phan_tich_so = function(n){
+			Array2 = [];
+			var q=n,r=0;
+			var i=0;
+			$("#phan_tich_so").append("Chuyển " +n+ "từ hệ cơ số mười sang 2 cho vào mảng A <br>");
+			while(parseInt(q)>0)
+			{
+
+				r=q%2; // so du
+				var Q = q;
+				Array2.push(r);
+				q=parseInt(q/2); // thuong
+				
+				$("#phan_tich_so").append('<b> A['+i+'] ='+Q+' % 2 = '+r+'</b><br>');
+				if(q<=0) break;
+			}
+			$("#phan_tich_so").append(" Sắp sếp theo thứ tự ngược lại!<br>");
+			var html = 'A=[';
+			for(var k = Array2.length-1 ; k >= 0;k--){
+				html+=Array2[k]+',';
+			}
+			html+=']<br>';
+			$("#phan_tich_so").append(html);
+			return Array2;
+		}
+
+		// thuat toan binh phuong va nhan
+		$scope.square_and_multiplication = function(X,N,M){
+			var k =0;
+			var x=X,n=$scope.phan_tich_so(N),m=M;
+			var p=1;
+			var a=0;
+			$("#square_and_multiplication").empty();
+			for (var i = n.length-1 ; i >= 0 ; i--) {
+				if(n[i]===1)
+				{
+					a= (p*p) % m;
+					p = (a*x) % m;
+					$("#square_and_multiplication").append('<tr><td><b>'+(k++)+'</b></td><td>'+n[i]+'</td><td>'+a+'</td><td>'+p+'</td></tr>');
+				}
+				else if(n[i]===0){
+					a= (p*p) % m;
+					p=a;
+					$("#square_and_multiplication").append('<tr><td><b>'+(k++)+'</b></td><td>'+n[i]+'</td><td>'+a+'</td><td>'+p+'</td></tr>');
+				}
+			}
+			return p;
+		}
+
+		$scope.encryption = function(){
+
+		}
+		$scope.decryption = function(){
+
+		}
+	});
+
+
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="scripts/toastr.min.js" type="scripts/javascript" ></script>
+</html>
