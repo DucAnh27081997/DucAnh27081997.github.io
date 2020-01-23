@@ -2098,7 +2098,7 @@ const Spark = {
 
 
 const soundManager = {
-	baseURL: 'https://drinking-laboratory.000webhostapp.com/hay/',
+	baseURL: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/',
 	ctx: new (window.AudioContext || window.webkitAudioContext),
 	sources: {
 		lift: {
