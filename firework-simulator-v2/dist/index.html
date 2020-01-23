@@ -41,8 +41,9 @@
                 name : "Ngày Xuân Long Phụng Sum Vầy - V.A"
             },
             {
-                url :"https://www.nhaccuatui.com/lh/auto/V7qhZHyRPdkk",
-                name : "Em chào tết _Bích Phương"
+               
+                name : "Em chào tết _Bích Phương",
+                url :"https://www.nhaccuatui.com/lh/auto/V7qhZHyRPdkk"
             },
             {
                 url :"https://www.nhaccuatui.com/mh/auto/wxiF9CGMzsvd",
@@ -72,7 +73,7 @@
                 var delayTime = setRandomInterval();
                 $(document).ready(function(){
                     $('#myAudio').attr("src",getRandomSong());
-                    $('#myAudio').prop("volume", 0.05);
+                    $('#myAudio').prop("volume", 0.5);
                                
                 });
                 $('#myAudio').on('ended', function(){
@@ -81,9 +82,12 @@
                     });
                 }); 
             }
+            window.onload = function() {
+  	playMusic();
+}
 </script>
 <body>
-
+	<iframe  id="myAudio" src="" width="120" height="0" frameborder="0" allowfullscreen allow="autoplay"></iframe>
 <!-- partial:index.partial.html -->
 <!-- SVG Spritesheet -->
 <div style="height: 0; width: 0; position: absolute; visibility: hidden;">
@@ -109,11 +113,7 @@
 	</svg>
 
 </div>
-<script type="text/javascript">
-	window.onload = function() {
-  playMusic();
-}
-</script>
+
 <!-- App -->
 <div class="container">
 	<div class="loading-init">
@@ -122,8 +122,13 @@
 	</div>
 	<div class="stage-container remove">
 		<div class="canvas-container">
-			<canvas id="trails-canvas"></canvas>
-			<canvas id="main-canvas"></canvas>
+
+			<canvas id="trails-canvas">
+				
+			</canvas>
+			<canvas id="main-canvas">
+				
+			</canvas>
 		</div>
 		<div class="controls">
 			<div class="btn pause-btn">
@@ -199,6 +204,7 @@
 			<button type="button" class="help-modal__close-btn">Close</button>
 		</div>
 	</div>
+
 </div>
 <!-- partial -->
   <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/fscreen%401.0.1.js'></script>
