@@ -1,0 +1,19 @@
+.{
+	margin: 0;
+	padding: 0;
+}
+
+.text{
+	font-style: italic;
+	color: #c3c3c3;
+
+}
+.row.noidung {
+    background: lightblue;
+}
+.h3{
+	text-align: center;
+}
+.anh{
+	background: #c4c4c4;
+}
