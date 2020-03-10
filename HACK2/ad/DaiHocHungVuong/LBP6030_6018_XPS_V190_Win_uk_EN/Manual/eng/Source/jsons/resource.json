@@ -1,0 +1,399 @@
+var resource = [
+	// --------------------------------------------------------------------------------------------
+	// HEADER
+	// --------------------------------------------------------------------------------------------
+	{
+		id:		"canon_logo",
+		value:	"<img src=\"../frame_images/hdr_canon_logo.gif\" title=\"CANON\" />"
+	},{
+		id:		"guide_name",
+		value:	""
+	},{
+		id:		"title",
+		value:	"XPS Driver Installation Guide"
+	},{
+		id:		"home",
+		value:	"Top"
+	},{
+		id:		"contents",
+		value:	"Contents"
+	},{
+		id:		"search",
+		value:	"Search"
+	},{
+		id:		"help",
+		value:	"How To Use"
+	},{
+		id:		"glossary",
+		value:	"Glossary"
+	},{
+		id:		"toggle_panel",
+		value:	"Hide/Show the left panel"
+	},{
+		id:		"bar_icon_previous",
+		value:	"<img src=\"../frame_images/bar_icon_prev.gif\" title=\"Go to the previous topic\" />"
+	},{
+		id:		"bar_label_previous",
+		value:	"Previous"
+	},{
+		id:		"bar_icon_next",
+		value:	"<img src=\"../frame_images/bar_icon_next.gif\" title=\"Go to the next topic\" />"
+	},{
+		id:		"bar_label_next",
+		value:	"Next"
+	},{
+		id:		"bar_icon_print",
+		value:	"<img src=\"../frame_images/bar_icon_print.gif\" title=\"Print this topic\" />"
+	},{
+		id:		"bar_label_print",
+		value:	"Print this topic"
+	},{
+		id:		"product_logo",
+		value:	"<img src=\"../frame_images/body_product_logo.gif\" title=\"XPS Driver Installaion guide\" />"
+	// --------------------------------------------------------------------------------------------
+	// FOOTER
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"copy_right",
+		value:	"Copyright CANON INC. 2013"
+	},{
+		id:		"disclaimer",
+		value:	"Disclaimers"
+	},{
+		id:		"copy_rights",
+		value:	"Copyright"
+	},{
+		id:		"trade_marks",
+		value:	"Trademarks"
+	},{
+		id:		"contact",
+		value:	"Office Locations"
+	},{
+		id:		"pub_number",
+		value:	"USRM2-4466-00"
+	// --------------------------------------------------------------------------------------------
+	// MAIN
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"print_all",
+		value:	"<img src=\"../frame_images/pnl_icon_print_all.gif\" title=\"Print all\">Print all"
+	},{
+		id:		"print_instructions",
+		value:	"Print this page with browser's [Print] menu."
+	},{
+		id:		"chapter",
+		value:	"Chapter: "
+	},{
+		id:		"keyword",
+		value:	"Keyword: "
+	},{
+		id:		"open_next_sibling",
+		value:	"Open details"
+	},{
+		id:		"close_next_sibling",
+		value:	"Close details"
+	},{
+		id:		"open_all",
+		value:	"Show all details"
+	},{
+		id:		"close_all",
+		value:	"Hide all details"
+	},{
+		id:		"close",
+		value:	"Close"
+	},{
+		id:		"close_toc_all",
+		value:	"<img src=\"../frame_images/pnl_sign_1.gif\" title=\"[-]\" />Collapse all"
+	},{
+		id:		"open_toc_all",
+		value:	"<img src=\"../frame_images/pnl_sign_2.gif\" title=\"[+]\" />Expand all"
+	// --------------------------------------------------------------------------------------------
+	// CONTENTS
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"contents_link_prev",
+		value:	"Previous"
+	},{
+		id:		"contents_link_next",
+		value:	"Next"
+	},{
+		id:		"contents_link_top",
+		value:	"Go to top of page"
+	// --------------------------------------------------------------------------------------------
+	// SEARCH
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"search_options_show",
+		value:	"Search options"
+	},{
+		id:		"search_options_hide",
+		value:	"Search options"
+	},{
+		id:		"search_options_case",
+		value:	"Case sensitive"
+	},{
+		id:		"search_options_multibyte",
+		value:	"Differentiate between one-byte and two-byte"
+	},{
+		id:		"search_options_search_scope_all",
+		value:	"Search all chapters"
+	},{
+		id:		"search_result_conditions",
+		value:	"Keyword(s): "
+	},{
+		id:		"search_prev",
+		value:	"« Prev"
+	},{
+		id:		"search_next",
+		value:	"Next »"
+	},{
+		id:		"search_found",
+		value:	"item(s)"
+	},{
+		id:		"search_options_search_scope_chapter",
+		value:	"Search from below chapters"
+	},{
+		id:		"search_scope",
+		value:	"Search scope: "
+	},{
+		id:		"search_scope_all",
+		value:	"all "
+	},{
+		id:		"search_scope_chapter",
+		value:	"chapter(s)"
+	},{
+		id:		"enter_search_keyword",
+		value:	"Enter keyword(s) here"
+	},{
+		id:		"search_button",
+		value:	"<img src=\"../frame_images/hdr_srch_btn_s.gif\" />Search with these conditions"
+	},{
+		id:		"search_glossary",
+		value:	"Search topics using this terminology..."
+	},{
+		id:		"search_glossary_not_found",
+		value:	"No topics found."
+	},{
+		id:		"search_label",
+		value:	"Search:"
+	},{
+		id:		"search_message_initial",
+		value:	"Specify search conditions"
+	},{
+		id:		"search_message_wait",
+		value:	"Now searching... Please wait..."
+	},{
+		id:		"search_result_item",
+		value:	"Result:"
+	// --------------------------------------------------------------------------------------------
+	// GROUP
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"intro",
+		value:	"Introduction"
+	},{
+		id:		"function",
+		value:	"Main topics"
+	},{
+		id:		"findhelp",
+		value:	"Help"
+	},{
+		id:		"appendix",
+		value:	"Appendix"
+	// --------------------------------------------------------------------------------------------
+	// CATEGORY
+	// --------------------------------------------------------------------------------------------
+	},{
+		id:		"system",
+		value:	"System Requirements"
+	},{
+		id:		"install1",
+		value:	"Standard Installation"
+	},{
+		id:		"install2",
+		value:	"Custom Installation"
+	},{
+		id:		"additional",
+		value:	"Updating/Uninstallation"
+	},{
+		id:		"print",
+		value:	"Printing"
+	},{
+		id:		"onlinehelp",
+		value:	"Where to Find Help"
+	},{
+		id:		"usb",
+		value:	"If You Cannot Install a USB Class Driver"
+	}
+];
+var link = [
+	// --------------------------------------------------------------------------------------------
+	// HEADER
+	// --------------------------------------------------------------------------------------------
+	{
+		link_name:"home",
+		link_target:"_self",
+		link_href:"../frame_htmls/home.html"
+	},{
+		link_name:"contents",
+		link_target:"_self",
+		link_href:"../frame_htmls/contents.html"
+	},{
+		link_name:"glossary",
+		link_target:"canon_sub_window",
+		link_href:"../frame_htmls/glossary.html"
+	},{
+		link_name:"help",
+		link_target:"_self"
+	// --------------------------------------------------------------------------------------------
+	// MAIN
+	// --------------------------------------------------------------------------------------------
+	},{
+		link_name:"system",
+		link_target:"_self"
+	},{
+		link_name:"install1",
+		link_target:"_self"
+	},{
+		link_name:"install2",
+		link_target:"_self"
+	},{
+		link_name:"additional",
+		link_target:"_self"
+	},{
+		link_name:"print",
+		link_target:"_self"
+	},{
+		link_name:"onlinehelp",
+		link_target:"_self"
+	},{
+		link_name:"usb",
+		link_target:"_self"
+	// --------------------------------------------------------------------------------------------
+	// FOOTER
+	// --------------------------------------------------------------------------------------------
+	},{
+		link_name:"disclaimer",
+		link_target:"canon_sub_window",
+		link_resource:"disclaimer",
+		link_href:""
+	},{
+		link_name:"copy_rights",
+		link_target:"canon_sub_window",
+		link_resource:"copy_rights",
+		link_href:""
+	},{
+		link_name:"trade_marks",
+		link_target:"canon_sub_window",
+		link_resource:"trade_marks",
+		link_href:""
+	},{
+		link_name:"contact",
+		link_target:"canon_sub_window",
+		link_resource:"contact",
+		link_href:""
+	}
+];
+var header = "home,|,contents,|,help,|,glossary";
+var footer = "disclaimer,|,copy_rights,|,trade_marks,|,_PUBNO_";
+var constant = [
+	{
+		/* Remove "//" below to specify the language code. Simplified Chinese must be specified as "zh-CN". Traditional Chinese must be specified as "zh-TW". */
+		//lang_code:					"xx-XX",
+		search_show_around:			50,
+		search_show_result_count:	10,
+		search_page_max_range:		5,
+		search_help:				"searchmethod",
+		search_option_multibyte:	1,	// [0|1]
+		join_chapters:				0,	// [0|1]
+		markup_glossary:			0,	// [0|1]
+		link_to_top:				1	// [0|1]
+	}
+];
+var link_to_top_title = [
+	{
+	lang:		"ja",
+		title:		"このページのトップへ"
+	},{
+		lang:		"en",
+		title:		"Back to Top"
+	},{
+		lang:		"fr",
+		title:		"Haut de page"
+	},{
+		lang:		"it",
+		title:		"Torna all'inizio"
+	},{
+		lang:		"de",
+		title:		"Zurück zum Seitenanfang"
+	},{
+		lang:		"es",
+		title:		"Volver al principio"
+	},{
+		lang:		"ko",
+		title:		"맨 위로 이동"
+	},{
+		lang:		"zh-CN",
+		title:		"返回首行"
+	},{
+		lang:		"zh-TW",
+		title:		"移至首行"
+	},{
+		lang:		"pt",
+		title:		"Voltar ao Topo"
+	},{
+		lang:		"ca",
+		title:		"Tornar al principi"
+	},{
+		lang:		"cs",
+		title:		"Zpět na začátek"
+	},{
+		lang:		"da",
+		title:		"Tilbage til toppen"
+	},{
+		lang:		"fi",
+		title:		"Takaisin ylös"
+	},{
+		lang:		"nl",
+		title:		"Terug naar boven"
+	},{
+		lang:		"pl",
+		title:		"Powrót do góry"
+	},{
+		lang:		"pt",
+		title:		"Voltar ao início"
+	},{
+		lang:		"ru",
+		title:		"В начало"
+	},{
+		lang:		"sv",
+		title:		"Tillbaka till början"
+	},{
+		lang:		"default",
+		title:		"Back to Top"
+	}
+];
+var cover = [
+	{
+		cover_name:"install1",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"install2",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"additional",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"print",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"onlinehelp",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"help",
+		cover_title:"Chapter Top"
+	},{
+		cover_name:"appendix",
+		cover_title:"Chapter Top"
+	}
+];

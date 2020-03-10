@@ -1,0 +1,23 @@
+<!--
+    XPSDrv Driver Filter Configuration File
+    Copyright CANON INC. 2013
+    
+    cnnx0_mlbp603060406018lxps_PipelineConfig.xml
+-->
+
+<Filters>
+    <Filter dll       = "cnnx0_fxetlayout_mlbp603060406018lxps.dll"
+         clsid        = "{C52AA600-FC9D-493b-B922-4CECDFE41395}"
+         name         = "LayoutFilter">
+        <Input guid   = "{b8cf8530-5562-47c4-ab67-b1f69ecf961e}" comment = "IID_IXpsDocumentProvider"/>
+        <Output guid  = "{4368d8a2-4181-4a9f-b295-3d9a38bb9ba0}" comment = "IID_IXpsDocumentConsumer"/>
+    </Filter>
+    <Filter dll       = "cnnx0_faqua_mlbp603060406018lxps.dll"
+         clsid        = "{685076D6-7DA3-4c44-8B10-1BC763C0502A}"
+         name         = "RenderingFilter">
+        <Input guid   = "{b8cf8530-5562-47c4-ab67-b1f69ecf961e}" comment = "IID_IXpsDocumentProvider"/>
+        <Output guid  = "{65bb7f1b-371e-4571-8ac7-912f510c1a38}" comment = "IID_IPrintWriteStream"/>
+    </Filter>
+
+    <FilterServiceProvider dll = "cnnx0_fui_mlbp603060406018lxps.dll"/>
+</Filters>
