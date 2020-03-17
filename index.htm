@@ -9,10 +9,10 @@
 <body>
 
     <p>Click the table headers to change the sorting order:</p>
-
+	
     <div class="row" ng-app="myApp" ng-controller="namesCtrl">
 
-        <table class="w3-table-all" border="1" width="100%">
+        <table class="table" border="1" width="100%">
             <tr>
                 <th ng-click="orderByMe('name')">Name</th>
                 <th ng-click="orderByMe('country')">Country</th>
@@ -26,7 +26,13 @@
     </div>
 
     <script>
-        angular.module('myApp', []).controller('namesCtrl', function($scope) {
+        angular.module('myApp', []).controller('namesCtrl', function($scope,$http) {
+
+        	$scope.LoadData = function () {
+            $http.get("https://tygia.com/app/covid-19/api.json?type=2")
+                .then(function (response) {
+                    console.log(response.data);
+            });
             $scope.names = [{
                 name: 'Jani',
                 country: 'Norway'
@@ -58,6 +64,7 @@
             $scope.orderByMe = function(x) {
                 $scope.myOrderBy = x;
             }
+
         });
     </script>
 
