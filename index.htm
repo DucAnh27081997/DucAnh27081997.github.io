@@ -1,52 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Người âm phủ</title>
-	<link rel="stylesheet"type="type/css"href="css/bootstrap.min.css">
-	<script type="text/javascript"src="js/jquery-3.3.1.min.js"></script>
-</head>
-<style type="text/css">
+<html>
+<meta charset="UTF-8">
+<title>Người âm phủ</title>
+<link rel="stylesheet" type="type/css" href="css/bootstrap.min.css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-
-.chu1, .chu2 {
-	font-size: 80px;
-	font-family: Times New Roman;
-	line-height: 299px;
-	min-height: 299px;
-	text-align: center;
-}
-
-.chu1 {
-	background-color: #18dcff;
-	color: #fff;
-}
-.chu1:hover {
-	background-color: #fff;
-	color: #18dcff;
-}
-.chu2 {
-	background-color: #ff4d4d;
-	color: #fff;
-}
-
-.chu2:hover {
-	background-color: #fff;
-	color: #ff4d4d;
-}
-
-img {
-	width: 100px;
-	font-family:
-}
-
-</style>
 <body>
-	<iframe src="https://www.nhaccuatui.com/mh/background/l6FPmkS3Yf8f" width="1" height="1" frameborder="0" allowfullscreen></iframe>
-	<div class="row">
-		<div class="col-md-12 chu1"><img src="img/house.png"alt=""> em có sao em không ở?</div>
-		<div class="col-md-12 chu2">Mà lại chuyển hộ khẩu vào <img src="img/tim.png"alt=""> anh!</div>
-	</div>
-	
+
+    <p>Click the table headers to change the sorting order:</p>
+
+    <div ng-app="myApp" ng-controller="namesCtrl">
+
+        <table border="1" width="100%">
+            <tr>
+                <th ng-click="orderByMe('name')">Name</th>
+                <th ng-click="orderByMe('country')">Country</th>
+            </tr>
+            <tr ng-repeat="x in names | orderBy:myOrderBy">
+                <td>{{x.name}}</td>
+                <td>{{x.country}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        angular.module('myApp', []).controller('namesCtrl', function($scope) {
+            $scope.names = [{
+                name: 'Jani',
+                country: 'Norway'
+            }, {
+                name: 'Carl',
+                country: 'Sweden'
+            }, {
+                name: 'Margareth',
+                country: 'England'
+            }, {
+                name: 'Hege',
+                country: 'Norway'
+            }, {
+                name: 'Joe',
+                country: 'Denmark'
+            }, {
+                name: 'Gustav',
+                country: 'Sweden'
+            }, {
+                name: 'Birgit',
+                country: 'Denmark'
+            }, {
+                name: 'Mary',
+                country: 'England'
+            }, {
+                name: 'Kai',
+                country: 'Norway'
+            }];
+            $scope.orderByMe = function(x) {
+                $scope.myOrderBy = x;
+            }
+        });
+    </script>
+
 </body>
+
 </html>
