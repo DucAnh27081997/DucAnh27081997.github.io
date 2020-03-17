@@ -41,13 +41,14 @@
                         <th>STT</th>
                         <th ng-click="orderByMe('type')">Quốc gia</th>
                         <th ng-click="orderByMe('total')">bị nhiễm</th>
-                        <th>chữa khỏi</th>
-                        <th>Nguy kich</th>
-                        <th>tử vong</th>
+                        <th ng-click="orderByMe('recovered')" >chữa khỏi</th>
+                        <th ng-click="orderByMe('critical')">Nguy kich</th>
+                        <th ng-click="orderByMe('death')">tử vong</th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
                     <tr ng-class="{'table-success': item.death > 1000 }">
+                    	<td>{{$index + 1}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.total}}</td>
                         <td>{{item.recovered}}</td>
