@@ -24,10 +24,10 @@
         <h2>NCOV-19</h2>
         <div class="row">
             <div class="col-sm-6">
-                tìm kiếm theo tên QG:
-                <input ng-model="searchtxt.type" type="text">
+            tìm kiếm theo tên QG:
+            <input ng-model="searchtxt.type" type="text">
             </div>
-            iềm kiếm theo só người nhiễm:
+            tìm kiếm theo só người nhiễm:
             <input ng-model="searchtxt.total" type="number">
             <div class="col-sm-6">
 
@@ -35,7 +35,8 @@
 
         </div>
         <div class="row">
-            <table class="table">
+            <div class="col-md-6">
+            	<table class="table">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -64,6 +65,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
         <script type="text/javascript">
             var app = angular.module('myApp', []);
