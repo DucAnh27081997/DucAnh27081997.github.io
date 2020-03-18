@@ -47,13 +47,20 @@
                     </tr>
                 </thead>
                 <tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
-                    <tr ng-class="{'table-success': item.death > 1000 }">
+                    <tr ng-class="{'table-success': item.death > 1000}">
                     	<td>{{$index + 1}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.total}}</td>
                         <td>{{item.recovered}}</td>
                         <td>{{item.critical}}</td>
                         <td>{{item.death}}</td>
+
+                        <td>SO VOI HOM QUA:
+                        tổng số người tăng :{{item.changed.total}} <br>
+                        số người bình phục: {{item.changed.recovered}} <br>
+                        số người nguy kịch: {{item.changed.critical}} <br>
+                        số người chết : {{item.changed.death}} <br>
+                    	</td>
                     </tr>
                 </tbody>
             </table>
