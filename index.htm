@@ -2,89 +2,155 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/angular.js"></script>
-    <script type="text/javascript" src="js/angular-route.js"></script>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
 </head>
 <style type="text/css">
-    th {
-        color: #c5c5c5;
-    }
+	
+	th {
+		color: #c5c5c5;
+	}
 </style>
 
 <body ng-app="myApp" ng-controller="myCtrl">
 
-    <div class="container">
-        <h2>NCOV-19</h2>
-        <div class="row">
-            <div class="col-sm-6">
-            tìm kiếm theo tên QG:
-            <input ng-model="searchtxt.type" type="text">
-            </div>
-            tìm kiếm theo só người nhiễm:
-            <input ng-model="searchtxt.total" type="number">
-            <div class="col-sm-6">
+	
+	<div class="container">
+		<h2>NCOV-19</h2>
+		<div class="row">
+			<div class="col-md-6 col-sm-6">
+				tìm kiếm theo tên QG:
+				<input ng-model="searchtxt.type" type="text">
+			</div>
+			tìm kiếm theo só người nhiễm:
+			<input ng-model="searchtxt.total" type="number">
+			<div class="col-sm-6">
 
-            </div>
+			</div>
 
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-            	<table class="table">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th ng-click="orderByMe('type')">Quốc gia</th>
-                        <th ng-click="orderByMe('total')">bị nhiễm</th>
-                        <th ng-click="orderByMe('recovered')" >chữa khỏi</th>
-                        <th ng-click="orderByMe('critical')">Nguy kich</th>
-                        <th ng-click="orderByMe('death')">tử vong</th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
-                    <tr ng-class="{'table-success': item.death > 1000}">
-                    	<td>{{$index + 1}}</td>
-                        <td>{{item.type}}</td>
-                        <td>{{item.total}}</td>
-                        <td>{{item.recovered}}</td>
-                        <td>{{item.critical}}</td>
-                        <td>{{item.death}}</td>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<table class="table-responsive">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th ng-click="orderByMe('type')">Quốc gia</th>
+							<th ng-click="orderByMe('total')">Bị nhiễm</th>
+							<th ng-click="orderByMe('recovered')" >Chữa khỏi</th>
+							<th ng-click="orderByMe('critical')">Nguy kich</th>
+							<th ng-click="orderByMe('death')">Tử vong</th>
+							<th>tool</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
+						<tr ng-class="{'table-active': item.death > 1000}">
+							<td>{{$index + 1}} </td>
+							<td>{{item.type}} </td>
+							<td>{{item.total}} </td>
+							<td>{{item.recovered}}</td>
+							<td>{{item.critical}}</td>
+							<td>{{item.death}}</td>
+							<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" ng-click="showInfo(item.type)">chi tiết</button></td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+			<h2>Modal Example</h2>
+			<!-- Trigger the modal with a button -->
 
-                        <td>SO VOI HOM QUA:
-                        tổng số người tăng :{{item.changed.total}} <br>
-                        số người bình phục: {{item.changed.recovered}} <br>
-                        số người nguy kịch: {{item.changed.critical}} <br>
-                        số người chết : {{item.changed.death}} <br>
-                    	</td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-        </div>
-        <script type="text/javascript">
-            var app = angular.module('myApp', []);
-            app.controller('myCtrl', function($scope, $http) {
-                $scope.list = null;
-                $scope.LoadData = function() {
-                    $http.get("https://tygia.com/app/covid-19/api.json?type=2")
-                        .then(function(response) {
-                            $scope.list = response.data.items;
-                            console.log($scope.list);
-                        });
 
-                }
-                $scope.LoadData();
-                $scope.orderByMe = function(x) {
-                    $scope.myOrderBy = x;
-                }
-            });
-        </script>
-</body>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
 
-</html>
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close float-left" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Tình hình diễn biến dịch ở {{info.type}}</h4>
+						</div>
+						<div class="modal-body">
+							<p>Some text in the modal.</p>
+							<p>Tổng số bệnh nhân nhiễm: {{info.total}}</p>
+							<p>số bệnh nhân hồi phục:{{info.recovered}}</p>
+							<p>số bệnh nhân nguy kịch:{{info.critical}}</p>
+							<p>số bệnh nhân tử vong: {{info.death}}</p>
+							<b>so với ngày hôm qua:</b>
+							<p>Tổng số bệnh nhân nhiễm tăng: {{info.changed.total}}</p>
+							<p>số bệnh nhân hồi phục tăng:{{info.changed.covered}}</p>
+							<p>số bệnh nhân nguy kịch tăng:{{info.changed.critical}}</p>
+							<p>số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+			app.controller('myCtrl', function($scope, $http) {
+				$scope.list = null;
+				$scope.info = {
+					type : "No Name",
+					total : 0,
+					recovered : 0,
+					critical : 0,
+					death :0, 
+					changed: {
+						total : 0,
+						recovered : 0,
+						critical : 0,
+						death :0
+					}
+
+				};
+				$scope.LoadData = function() {
+					$http.get("https://tygia.com/app/covid-19/api.json?type=2")
+					.then(function(response) {
+						$scope.list = response.data.items;
+						console.log($scope.list);
+					});
+
+				}
+				$scope.LoadData();
+				$scope.orderByMe = function(x) {
+					$scope.myOrderBy = x;
+				}
+				$scope.showInfo = function(x) {
+
+
+								
+					const ojb = $scope.list.find(list => list.type === x);
+					$scope.info.type = ojb.type;
+					$scope.info.total = ojb.total;
+					$scope.info.recovered = ojb.recovered;
+					$scope.info.critical = ojb.critical;
+					$scope.info.death = ojb.death;
+					
+					//change
+					$scope.info.changed.total = ojb.changed.total;
+					$scope.info.changed.recovered = ojb.changed.recovered;
+					$scope.info.changed.critical = ojb.changed.critical;
+					$scope.info.changed.death = ojb.changed.death;
+				    $("#myModal").modal();	
+					console.log(ojb);
+				}
+			});
+		</script>
+	</body>
+
+	</html>
