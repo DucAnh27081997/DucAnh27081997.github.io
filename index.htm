@@ -12,6 +12,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/angular-route.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<style type="text/css">
 
 		th {
@@ -31,11 +32,11 @@
 
 	
 	<div class="container">
-		<h2>NCOV-19</h2>
-		<div class="row info">
-			<b>Số quốc gia có bệnh nhân nhiễm COVIT-19 :</b>
-		</div>
+		
 		<div class="row">
+			<div class="col-md-12">
+				<h2>Thông tin tìn hình dịch bênh NCOV-19</h2>
+			</div>
 			<div class="col-md-6 col-sm-6">
 				tìm kiếm theo tên QG:
 				<input ng-model="searchtxt.type" type="text">
@@ -92,7 +93,7 @@
 							<p>số bệnh nhân tử vong: {{info.death}}</p>
 							<b>So với ngày hôm qua:</b>
 							<p>Tổng số bệnh nhân nhiễm tăng: <b style="color: #f00">{{info.changed.total}}</b></p>
-							<p>số bệnh nhân hồi phục tăng:{{info.changed.covered}}</p>
+							<p>số bệnh nhân hồi phục tăng:{{info.changed.recovered}}</p>
 							<p>số bệnh nhân nguy kịch tăng:{{info.changed.critical}}</p>
 							<p>số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
 						</div>
