@@ -17,6 +17,12 @@
 		th {
 			color: #c5c5c5;
 		}
+		table{
+			text-align: center;
+		}
+		tr>>th{
+			text-align: center;
+		}
 	</style>
 </head>
 
@@ -27,10 +33,7 @@
 	<div class="container">
 		<h2>NCOV-19</h2>
 		<div class="row info">
-			<b>Số quốc gia có bệnh nhân nhiễm COVIT-19 : {{list.lenght}}</b>
-			<b></b>
-			<b></b>
-			<b></b>
+			<b>Số quốc gia có bệnh nhân nhiễm COVIT-19 :</b>
 		</div>
 		<div class="row">
 			<div class="col-md-6 col-sm-6">
@@ -58,7 +61,7 @@
 						</tr>
 					</thead>
 					<tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
-						<tr ng-class="{'table-active': item.death > 1000}">
+						<tr ng-class="{'danger': item.death > 1000}">
 							<td><b style="color: #4267b2">{{$index + 1}}</b></td>
 							<td>{{item.type}} </td>
 							<td>{{item.total}} </td>
@@ -83,12 +86,12 @@
 						</div>
 						<div class="modal-body">
 							<p>Some text in the modal.</p>
-							<p>Tổng số bệnh nhân nhiễm: {{info.total}}</p>
+							<p>Tổng số bệnh nhân nhiễm: <b style="color: #f00">{{info.total}}</b></p>
 							<p>số bệnh nhân hồi phục:{{info.recovered}}</p>
 							<p>số bệnh nhân nguy kịch:{{info.critical}}</p>
 							<p>số bệnh nhân tử vong: {{info.death}}</p>
 							<b>So với ngày hôm qua:</b>
-							<p>Tổng số bệnh nhân nhiễm tăng: {{info.changed.total}}</p>
+							<p>Tổng số bệnh nhân nhiễm tăng: <b style="color: #f00">{{info.changed.total}}</b></p>
 							<p>số bệnh nhân hồi phục tăng:{{info.changed.covered}}</p>
 							<p>số bệnh nhân nguy kịch tăng:{{info.changed.critical}}</p>
 							<p>số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
@@ -103,7 +106,6 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		var cout=0;
 		var app = angular.module('myApp', []);
 
 		app.controller('myCtrl', function($scope, $http) {
@@ -120,7 +122,6 @@
 					critical : 0,
 					death :0
 				}
-
 			};
 			$scope.LoadData = function() {
 				$http.get("https://tygia.com/app/covid-19/api.json?type=2")
@@ -134,9 +135,6 @@
 				$scope.myOrderBy = x;
 			}
 			$scope.showInfo = function(x) {
-
-
-
 				const ojb = $scope.list.find(list => list.type === x);
 				$scope.info.type = ojb.type;
 				$scope.info.total = ojb.total;
@@ -144,15 +142,15 @@
 				$scope.info.critical = ojb.critical;
 				$scope.info.death = ojb.death;
 
-					//change
-					$scope.info.changed.total = ojb.changed.total;
-					$scope.info.changed.recovered = ojb.changed.recovered;
-					$scope.info.changed.critical = ojb.changed.critical;
-					$scope.info.changed.death = ojb.changed.death;
-					$("#myModal").modal();	
-					console.log(ojb);
-				}
-			});
-		</script>
-	</body>
-	</html>
+				//change
+				$scope.info.changed.total = ojb.changed.total;
+				$scope.info.changed.recovered = ojb.changed.recovered;
+				$scope.info.changed.critical = ojb.changed.critical;
+				$scope.info.changed.death = ojb.changed.death;
+				$("#myModal").modal();	
+				console.log(ojb);
+			}
+		});
+	</script>
+</body>
+</html>
