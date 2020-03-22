@@ -12,34 +12,40 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/angular-route.js"></script>
+	<style type="text/css">
+
+		th {
+			color: #c5c5c5;
+		}
+	</style>
 </head>
-<style type="text/css">
-	
-	th {
-		color: #c5c5c5;
-	}
-</style>
+
 
 <body ng-app="myApp" ng-controller="myCtrl">
 
 	
 	<div class="container">
 		<h2>NCOV-19</h2>
+		<div class="row info">
+			<b>Số quốc gia có bệnh nhân nhiễm COVIT-19 : {{list.lenght}}</b>
+			<b></b>
+			<b></b>
+			<b></b>
+		</div>
 		<div class="row">
 			<div class="col-md-6 col-sm-6">
 				tìm kiếm theo tên QG:
 				<input ng-model="searchtxt.type" type="text">
 			</div>
-			tìm kiếm theo só người nhiễm:
-			<input ng-model="searchtxt.total" type="number">
-			<div class="col-sm-6">
-
+			
+			<div class="col-md-6 col-sm-6">
+				tìm kiếm theo só người nhiễm:
+				<input ng-model="searchtxt.total" type="number">
 			</div>
-
 		</div>
 		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<table class="table-responsive">
+			<div class="col-md-12">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>STT</th>
@@ -53,7 +59,7 @@
 					</thead>
 					<tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
 						<tr ng-class="{'table-active': item.death > 1000}">
-							<td>{{$index + 1}} </td>
+							<td><b style="color: #4267b2">{{$index + 1}}</b></td>
 							<td>{{item.type}} </td>
 							<td>{{item.total}} </td>
 							<td>{{item.recovered}}</td>
@@ -65,14 +71,10 @@
 				</table>
 				
 			</div>
-			<h2>Modal Example</h2>
-			<!-- Trigger the modal with a button -->
-
-
-			<!-- Modal -->
+		</div>
+		<div class="row">
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
-
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
@@ -85,7 +87,7 @@
 							<p>số bệnh nhân hồi phục:{{info.recovered}}</p>
 							<p>số bệnh nhân nguy kịch:{{info.critical}}</p>
 							<p>số bệnh nhân tử vong: {{info.death}}</p>
-							<b>so với ngày hôm qua:</b>
+							<b>So với ngày hôm qua:</b>
 							<p>Tổng số bệnh nhân nhiễm tăng: {{info.changed.total}}</p>
 							<p>số bệnh nhân hồi phục tăng:{{info.changed.covered}}</p>
 							<p>số bệnh nhân nguy kịch tăng:{{info.changed.critical}}</p>
@@ -99,58 +101,58 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-			var app = angular.module('myApp', []);
+	</div>
+	<script type="text/javascript">
+		var cout=0;
+		var app = angular.module('myApp', []);
 
-			app.controller('myCtrl', function($scope, $http) {
-				$scope.list = null;
-				$scope.info = {
-					type : "No Name",
+		app.controller('myCtrl', function($scope, $http) {
+			$scope.list = null;
+			$scope.info = {
+				type : "No Name",
+				total : 0,
+				recovered : 0,
+				critical : 0,
+				death :0, 
+				changed: {
 					total : 0,
 					recovered : 0,
 					critical : 0,
-					death :0, 
-					changed: {
-						total : 0,
-						recovered : 0,
-						critical : 0,
-						death :0
-					}
-
-				};
-				$scope.LoadData = function() {
-					$http.get("https://tygia.com/app/covid-19/api.json?type=2")
-					.then(function(response) {
-						$scope.list = response.data.items;
-						console.log($scope.list);
-					});
-
+					death :0
 				}
-				$scope.LoadData();
-				$scope.orderByMe = function(x) {
-					$scope.myOrderBy = x;
-				}
-				$scope.showInfo = function(x) {
+
+			};
+			$scope.LoadData = function() {
+				$http.get("https://tygia.com/app/covid-19/api.json?type=2")
+				.then(function(response) {
+					$scope.list = response.data.items;
+				});
+
+			}
+			$scope.LoadData();
+			$scope.orderByMe = function(x) {
+				$scope.myOrderBy = x;
+			}
+			$scope.showInfo = function(x) {
 
 
-								
-					const ojb = $scope.list.find(list => list.type === x);
-					$scope.info.type = ojb.type;
-					$scope.info.total = ojb.total;
-					$scope.info.recovered = ojb.recovered;
-					$scope.info.critical = ojb.critical;
-					$scope.info.death = ojb.death;
-					
+
+				const ojb = $scope.list.find(list => list.type === x);
+				$scope.info.type = ojb.type;
+				$scope.info.total = ojb.total;
+				$scope.info.recovered = ojb.recovered;
+				$scope.info.critical = ojb.critical;
+				$scope.info.death = ojb.death;
+
 					//change
 					$scope.info.changed.total = ojb.changed.total;
 					$scope.info.changed.recovered = ojb.changed.recovered;
 					$scope.info.changed.critical = ojb.changed.critical;
 					$scope.info.changed.death = ojb.changed.death;
-				    $("#myModal").modal();	
+					$("#myModal").modal();	
 					console.log(ojb);
 				}
 			});
 		</script>
 	</body>
-
 	</html>
