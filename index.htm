@@ -12,7 +12,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/angular-route.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./fontawesome/css/fontawesome.min.css">
 	<style type="text/css">
 
 		th {
@@ -21,9 +21,7 @@
 		table{
 			text-align: center;
 		}
-		tr>>th{
-			text-align: center;
-		}
+		
 	</style>
 </head>
 
@@ -37,23 +35,50 @@
 			<div class="col-md-12">
 				<h2>Thông tin tìn hình dịch bênh NCOV-19</h2>
 			</div>
-			<div class="col-md-6 col-sm-6">
-				tìm kiếm theo tên QG:
-				<input ng-model="searchtxt.type" type="text">
-			</div>
 			
-			<div class="col-md-6 col-sm-6">
+			
+			<!--<div class="col-md-6 col-sm-6">
 				tìm kiếm theo só người nhiễm:
 				<input ng-model="searchtxt.total" type="number">
+			</div> 
+			<div class="col-md-6 col-sm-6">
+				Xem tình hình tại Việt Nam
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" ng-click="showInfo('vietnam')">chi tiết</button>
+			</div>-->
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Tình hình tại Viet Nam</h4>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				
+				<b>Hôm nay:</b>
+				<p>Số bệnh nhân nhiễm: <b style="color: #f00">{{vn.total}}</b></p>
+				<p>Số bệnh nhân hồi phục:<b style="color: #0d58c4">{{vn.recovered}}</b></p>
+				<p>Số bệnh nhân nguy kịch:<b style="color: #F99C00">{{vn.critical}}</b></p>
+				<p>Số bệnh nhân tử vong: {{vn.death}}</p>
+				
+
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<b>So với ngày hôm qua:</b>
+				<p>Số bệnh nhân nhiễm tăng: <b style="color: #f00">{{vn.changed.total}}</b></p>
+				<p>Số bệnh nhân hồi phục tăng: <b style="color: #0d58c4">{{vn.changed.recovered}}</b></p>
+				<p>Số bệnh nhân nguy kịch tăng:<b style="color: #F99C00">{{vn.changed.critical}}</b></p>
+				<p>Số bệnh nhân tử vong tăng: {{vn.changed.death}}</p>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-12 col-sm-6">
+				tìm kiếm theo tên QG:
+				<input ng-model="searchtxt.type" type="text">
+			</div>
 			<div class="col-md-12">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>STT</th>
-							<th ng-click="orderByMe('type')">Quốc gia</th>
+							<th ng-click="orderByMe('type')">Quốc gia <i class="fas fa-users"></i></th>
 							<th ng-click="orderByMe('total')">Bị nhiễm</th>
 							<th ng-click="orderByMe('recovered')" >Chữa khỏi</th>
 							<th ng-click="orderByMe('critical')">Nguy kich</th>
@@ -86,16 +111,16 @@
 							<h4 class="modal-title">Tình hình diễn biến dịch ở {{info.type}}</h4>
 						</div>
 						<div class="modal-body">
-							<p>Some text in the modal.</p>
-							<p>Tổng số bệnh nhân nhiễm: <b style="color: #f00">{{info.total}}</b></p>
-							<p>số bệnh nhân hồi phục:{{info.recovered}}</p>
-							<p>số bệnh nhân nguy kịch:{{info.critical}}</p>
-							<p>số bệnh nhân tử vong: {{info.death}}</p>
+							
+							<p>Số bệnh nhân nhiễm: <b style="color: #f00">{{info.total}}</b></p>
+							<p>Số bệnh nhân hồi phục:<b style="color: #0d58c4">{{info.recovered}}</b></p>
+							<p>Số bệnh nhân nguy kịch:<b style="color: #F99C00">{{info.critical}}</b></p>
+							<p>Số bệnh nhân tử vong: {{info.death}}</p>
 							<b>So với ngày hôm qua:</b>
-							<p>Tổng số bệnh nhân nhiễm tăng: <b style="color: #f00">{{info.changed.total}}</b></p>
-							<p>số bệnh nhân hồi phục tăng:{{info.changed.recovered}}</p>
-							<p>số bệnh nhân nguy kịch tăng:{{info.changed.critical}}</p>
-							<p>số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
+							<p>Số bệnh nhân nhiễm tăng: <b style="color: #f00">{{info.changed.total}}</b></p>
+							<p>Số bệnh nhân hồi phục tăng: <b style="color: #0d58c4">{{info.changed.recovered}}</b></p>
+							<p>Số bệnh nhân nguy kịch tăng:<b style="color: #F99C00">{{info.changed.critical}}</b></p>
+							<p>Số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -110,6 +135,7 @@
 		var app = angular.module('myApp', []);
 
 		app.controller('myCtrl', function($scope, $http) {
+			$scope.vn = null;
 			$scope.list = null;
 			$scope.info = {
 				type : "No Name",
@@ -128,7 +154,9 @@
 				$http.get("https://tygia.com/app/covid-19/api.json?type=2")
 				.then(function(response) {
 					$scope.list = response.data.items;
+					$scope.vn = $scope.list.find(list => list.type === "vietnam");
 				});
+
 
 			}
 			$scope.LoadData();
@@ -148,7 +176,7 @@
 				$scope.info.changed.recovered = ojb.changed.recovered;
 				$scope.info.changed.critical = ojb.changed.critical;
 				$scope.info.changed.death = ojb.changed.death;
-				$("#myModal").modal();	
+				$("#myModal").modal("show");	
 				console.log(ojb);
 			}
 		});
