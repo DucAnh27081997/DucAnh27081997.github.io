@@ -18,10 +18,13 @@ app.controller('myCtrl', function($scope, $http) {
 		}
 	};
 	$scope.LoadData = function() {
+		$scope.loader = "show";
+		$scope.searchtxt = "";
 		$http.get("https://tygia.com/app/covid-19/api.json?type=2")
 		.then(function(response) {
 			$scope.list = response.data.items;
 			$scope.vn = $scope.list.find(list => list.type === "vietnam");
+			$scope.loader = "hide";
 		});
 
 
