@@ -1,15 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<div class="lds-ellipsis">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+	<link rel="stylesheet" href="./fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="./style.css">
+
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+	
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Thông tin tìn hình dịch bênh NCOV-19</h2>
+			</div>
+			
+			
+			<!--<div class="col-md-6 col-sm-6">
+				tìm kiếm theo só người nhiễm:
+				<input ng-model="searchtxt.total" type="number">
+			</div> 
+			<div class="col-md-6 col-sm-6">
+				Xem tình hình tại Việt Nam
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" ng-click="showInfo('vietnam')">chi tiết</button>
+			</div>-->
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Tình hình tại Viet Nam</h4>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				
+				<b>Hôm nay:</b>
+				<p>Số bệnh nhân nhiễm: <b style="color: #f00">{{vn.total}}</b></p>
+				<p>Số bệnh nhân hồi phục:<b style="color: #0d58c4">{{vn.recovered}}</b></p>
+				<p>Số bệnh nhân nguy kịch:<b style="color: #F99C00">{{vn.critical}}</b></p>
+				<p>Số bệnh nhân tử vong: {{vn.death}}</p>
+				
+
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<b>So với ngày hôm qua:</b>
+				<p>Số bệnh nhân nhiễm tăng: <b style="color: #f00">{{vn.changed.total}}</b></p>
+				<p>Số bệnh nhân hồi phục tăng: <b style="color: #0d58c4">{{vn.changed.recovered}}</b></p>
+				<p>Số bệnh nhân nguy kịch tăng:<b style="color: #F99C00">{{vn.changed.critical}}</b></p>
+				<p>Số bệnh nhân tử vong tăng: {{vn.changed.death}}</p>
+			</div>
+
+			
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					tìm kiếm theo tên QG:
+					<input ng-model="searchtxt.type" type="text">
+				</div>
+				<div class="col-md-6 col-sm-6">
+					
+					<button ng-click="LoadData()" type="button" class="btn btn-sm btn-success">Reload</button>
+				</div>
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>STT</th>
+								<th ng-click="orderByMe('type')">Quốc gia <i class="fas fa-users"></i></th>
+								<th ng-click="orderByMe('total')">Bị nhiễm</th>
+								<th ng-click="orderByMe('recovered')" >Chữa khỏi</th>
+								<th ng-click="orderByMe('critical')">Nguy kich</th>
+								<th ng-click="orderByMe('death')">Tử vong</th>
+								<th>tool</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="item in list | orderBy:myOrderBy |filter:searchtxt">
+							<tr ng-class="{'danger': item.death > 1000}">
+								<td><b style="color: #4267b2">{{$index + 1}}</b></td>
+								<td>{{item.type}} </td>
+								<td>{{item.total}} </td>
+								<td>{{item.recovered}}</td>
+								<td>{{item.critical}}</td>
+								<td>{{item.death}}</td>
+								<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" ng-click="showInfo(item.type)">chi tiết</button></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close float-left" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Tình hình diễn biến dịch ở {{info.type}}</h4>
+							</div>
+							<div class="modal-body">
+
+								<p>Số bệnh nhân nhiễm: <b style="color: #f00">{{info.total}}</b></p>
+								<p>Số bệnh nhân hồi phục:<b style="color: #0d58c4">{{info.recovered}}</b></p>
+								<p>Số bệnh nhân nguy kịch:<b style="color: #F99C00">{{info.critical}}</b></p>
+								<p>Số bệnh nhân tử vong: {{info.death}}</p>
+								<b>So với ngày hôm qua:</b>
+								<p>Số bệnh nhân nhiễm tăng: <b style="color: #f00">{{info.changed.total}}</b></p>
+								<p>Số bệnh nhân hồi phục tăng: <b style="color: #0d58c4">{{info.changed.recovered}}</b></p>
+								<p>Số bệnh nhân nguy kịch tăng:<b style="color: #F99C00">{{info.changed.critical}}</b></p>
+								<p>Số bệnh nhân tử vong tăng: {{info.changed.death}}</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	<!--loader-->
+	<div id="loader" ng-class="loader" ng-model="loader">
+		<div class="ring">
+		Loading...
+		<span id="x1"></span>		
+	</div>
+	<script type="text/javascript" src="./js/api.js"></script>
 	</div>
 </body>
 </html>
