@@ -1,0 +1,159 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	overflow: hidden;
+}
+.header{
+	height: 100vh;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+}
+.baner1{
+	height: 100vh;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+}
+img{
+	position: absolute;
+	width: 120%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	animation: zoom-out 3s linear infinite;
+}
+@keyframes zoom-out{
+	100%{
+		width: 100%;
+	}
+}
+.text-box{
+	width: 600px;
+	position: absolute;
+	top: 200px;
+	left: 100px;
+	color: #fff;
+	animation: text-up 12s linear infinite;
+	animation: translateY(100px);
+}
+@keyframes text-up{
+	10%{
+		transform: translateY(100px);
+	}
+	100%{
+		transform: translateY(0px);
+	}
+}
+.text-box h1{
+	margin-bottom: 40px;
+}
+.text-box p{
+	font-style: 14px;
+	line-height: 18px;
+	margin-top: 80px;
+
+}
+.text-box span{
+	background: red;
+	height: 2px;
+	width: 100px;
+	position: absolute;
+	left: 0px;
+}
+#baner1{
+	animation: slide1 12s linear infinite;
+}
+#baner2{
+	animation: slide2 12s linear infinite;
+}
+#baner3{
+	animation: slide3 12s linear infinite;
+}
+#baner4{
+	animation: slide4 12s linear infinite;
+}
+
+@keyframes slide1{
+	0%{
+		visibility: visible;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: visible;
+	}
+}
+@keyframes slide2{
+	0%{
+		visibility: hidden;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: visible;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: hidden;
+	}
+}
+@keyframes slide3{
+	0%{
+		visibility: hidden;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: visible;
+	}
+	100%{
+		visibility: hidden;
+	}
+}
+@keyframes slide4{
+	0%{
+		visibility: hidden;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: visible;
+	}
+}
+
+.text-box1{
+	animation-delay: 0s;
+}
+.text-box2{
+	animation-delay: 3s;
+}
+.text-box3{
+	animation-delay: 6s;
+}
+.text-box4{
+	animation-delay: 9s;
+}

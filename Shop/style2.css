@@ -1,0 +1,35 @@
+.carousel-item{
+	background-repeat: no-repeat;
+	width: 400px ;
+}
+.text-box{
+	top: 200px;
+	left: 100px;
+	color: #fff;
+	animation: text-up 12s linear infinite;
+	animation: translateY(100px);
+}
+@keyframes text-up{
+	10%{
+		transform: translateY(100px);
+	}
+	100%{
+		transform: translateY(0px);
+	}
+}
+.text-box h1{
+	margin-bottom: 40px;
+}
+.text-box p{
+	font-style: 14px;
+	line-height: 18px;
+	margin-top: 80px;
+
+}
+.text-box span{
+	background: red;
+	height: 2px;
+	width: 100px;
+	position: absolute;
+	left: 0px;
+}
