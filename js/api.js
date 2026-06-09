@@ -46,7 +46,7 @@ $scope.info.changed.total = ojb.changed.total;
 $scope.info.changed.recovered = ojb.changed.recovered;
 $scope.info.changed.critical = ojb.changed.critical;
 $scope.info.changed.death = ojb.changed.death;
-$("#myModal").modal("show");	
+// $("#myModal").modal("show");
 console.log(ojb);
 }
 });

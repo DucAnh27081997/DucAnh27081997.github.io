@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<h1>The textarea element</h1>
+
+<div>
+<textarea id="dataXML" name="w3review" rows="15" cols="100">
+  </textarea>
+<div>
+  
+<div>
+ <textarea id="dataXML2" name="w3review" rows="15" cols="100">
+  </textarea>
+<div>
+
+  <input  type="button" value="Submit" onclick = "convertData()">
+
+
+</body>
+<script>
+var convertData = function(){
+	var data = document.getElementById("dataXML").value;
+	document.getElementById("dataXML2").value = prettifyXml(data);
+}
+var prettifyXml = function(sourceXml)
+{
+    var xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
+    var xsltDoc = new DOMParser().parseFromString([
+        // describes how we want to modify the XML - indent everything
+        '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
+        '  <xsl:strip-space elements="*"/>',
+        '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
+        '    <xsl:value-of select="normalize-space(.)"/>',
+        '  </xsl:template>',
+        '  <xsl:template match="node()|@*">',
+        '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
+        '  </xsl:template>',
+        '  <xsl:output indent="yes"/>',
+        '</xsl:stylesheet>',
+    ].join('\n'), 'application/xml');
+
+    var xsltProcessor = new XSLTProcessor();    
+    xsltProcessor.importStylesheet(xsltDoc);
+    var resultDoc = xsltProcessor.transformToDocument(xmlDoc);
+    var resultXml = new XMLSerializer().serializeToString(resultDoc);
+    return resultXml;
+};
+
+</script>
+</html>
+

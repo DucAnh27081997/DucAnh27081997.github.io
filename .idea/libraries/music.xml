@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="music">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/firework-simulator-v2/music/music.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
